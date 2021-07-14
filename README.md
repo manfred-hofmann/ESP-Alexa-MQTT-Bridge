@@ -36,12 +36,14 @@ Nachdem Speichern wird der ESP neu gestartet!
 Nun sollte sich der ESP mit dem lokalen Netzwerk verbinden und  
 im MQTT-Server werden die Knoten IP und SYSTEMNAME unter dem Root Hierarchieknoten angelegt.
 Außerdem wird der erste Eintrag in der Befehlsliste angelegt z.B. TEST:
-![MQTT-Server](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/mqtt01.JPG "MQTT-Server")  
+![MQTT-Server](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/mqtt01.JPG "MQTT-Server")    
   
-Als nächstes muss die Alexa nach neuen Geräten suchen. (entweder per APP oder per Sprachbefehl "Alexe suche Geräte")  
+Als nächstes muss die Alexa nach neuen Geräten suchen.  
+(entweder per APP oder per Sprachbefehl "Alexe suche Geräte")  
+   
 In der APP sollte ein neues Gerät gefunden werden (z.B. Test)  
 <img src="https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/alexa01.jpg" width="200" height="420" />   
-Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird das an der MQTT-Server weitergegeben.  
+Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird das an den MQTT-Server weitergegeben.  
   
 Auf der Hauptseite des ESP können nun weitere Geräte eingerichtet werden:  
 ![Web01](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web01.JPG "Web01")  
