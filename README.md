@@ -22,11 +22,13 @@ Nach dem Start des ESP wird ein offener WiFi AP erstellt.
 Suche mit dem Handy das WLAN ESP_ALEXA_GW und melde Dich im WLAN an.  
 Dann öffnet sich der Browser in dem die WLAN Parameter des lokalen Netzwerkes und die MQTT Parameter angegeben werden können.  
 folgende Einstellungen sind hier zu setzen:  
-Systemname: Netzwerkname des ESP  
-SID: WLAN Parameter des lokalen Netzwerks  
-MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBrocker mit MQTT-Adapter)
-MQTT User/Passwort: User und Passort des MQTT Server Zugang.
-MQTT ROOT: Root Hierarchieknoten im MQTT Server wo die Nachrichten abgelegt werden.  
+  
+*Systemname: Netzwerkname des ESP  
+*SID: WLAN Parameter des lokalen Netzwerks  
+*MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBrocker mit MQTT-Adapter)
+*MQTT User/Passwort: User und Passort des MQTT Server Zugang.
+*MQTT ROOT: Root Hierarchieknoten im MQTT Server wo die Nachrichten abgelegt werden.  
+  
 ![WLan/MQTT-Einstellungen](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web03.JPG "WLan/MQTT-Einstellungen")  
   
   
@@ -43,9 +45,10 @@ Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird das an 
   
 Auf der Hauptseite des ESP können nun weitere Geräte eingerichtet werden:  
 ![Web01](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web01.JPG "Web01")  
-![Web02](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web02.JPG "Web02") 
+![Web02](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web02.JPG "Web02")  
+  
 Nachdem Speichern wird jedesmal ein Neustart des ESP durchgeführt!  
-Wenn neue Geräte hinzugefügt wurden, müssen diese immer von der Alexa gesucht werden.  
+Wenn neue Geräte hinzugefügt wurden, müssen diese danach immer von der Alexa gesucht werden.  
 
 Viel Spaß damit!  
 
