@@ -50,8 +50,11 @@ Auf der Hauptseite des ESP können nun weitere Geräte eingerichtet werden:
 ![Web02](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web02.JPG "Web02")  
   
 Nachdem Speichern wird jedesmal ein Neustart des ESP durchgeführt!  
+Der Neustart dauert aber nur wenige Sekunden.  
+   
 Wenn neue Geräte hinzugefügt wurden, müssen diese danach immer von der Alexa gesucht werden.  
-
+  
+  
 Viel Spaß damit!  
 
  
