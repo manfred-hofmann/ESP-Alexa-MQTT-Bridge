@@ -40,7 +40,7 @@ Außerdem wird der erste Eintrag in der Befehlsliste angelegt z.B. TEST:
   
 Als nächstes muss die Alexa nach neuen Geräten suchen. (entweder per APP oder per Sprachbefehl "Alexe suche Geräte")  
 In der APP sollte ein neues Gerät gefunden werden (z.B. Test)  
-![Alexa](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/alexa01.jpg "Alexa")  
+<img src="https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/alexa01.jpg" width="200" height="420" />   
 Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird das an der MQTT-Server weitergegeben.  
   
 Auf der Hauptseite des ESP können nun weitere Geräte eingerichtet werden:  
