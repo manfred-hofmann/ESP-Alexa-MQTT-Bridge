@@ -25,8 +25,8 @@ folgende Einstellungen sind hier zu setzen:
   
 *Systemname: Netzwerkname des ESP  
 *SID: WLAN Parameter des lokalen Netzwerks  
-*MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBrocker mit MQTT-Adapter)
-*MQTT User/Passwort: User und Passort des MQTT Server Zugang.
+*MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBrocker mit MQTT-Adapter)  
+*MQTT User/Passwort: User und Passort des MQTT Server Zugang.  
 *MQTT ROOT: Root Hierarchieknoten im MQTT Server wo die Nachrichten abgelegt werden.  
   
 ![WLan/MQTT-Einstellungen](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web03.JPG "WLan/MQTT-Einstellungen")  
