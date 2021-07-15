@@ -2,8 +2,8 @@
 Mit Alexa Befehl MQTT publishen  
 Stellt für die Alexa bis zu 30 Geräte zur Verfügung.  
 (Geräte sind vom Typ Philips Hue)  
-Die Sprachbefehle werden mittels MQTT an einen MQTT-Server 
-(z.B. ioBroker mit MQTT-Adapter)gepublished.  
+Die Sprachbefehle werden mittels MQTT an einen MQTT-Server  
+(z.B. ioBroker mit MQTT-Adapter) gepublished.  
 
 
 ## Inbetriebnahme: 
