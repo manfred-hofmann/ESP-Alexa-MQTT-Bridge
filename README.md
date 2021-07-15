@@ -2,7 +2,7 @@
 Mit Alexa Befehl MQTT publishen  
 Stellt für die Alexa bis zu 30 Geräte zur Verfügung.  
 (Geräte sind vom Typ Philips Hue)  
-Die Sprachbefehle werden mittels MQTT an einen MQTT-Server gepublished.  
+Die Sprachbefehle werden mittels MQTT an einen MQTT-Server (z.B. ioBroker mit MQTT-Adapter)gepublished.  
 
 
 ## Inbetriebnahme: 
@@ -27,7 +27,7 @@ folgende Einstellungen sind hier zu setzen:
   
 *Systemname: Netzwerkname des ESP  
 *SID: WLAN Parameter des lokalen Netzwerks  
-*MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBrocker mit MQTT-Adapter)  
+*MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBroker mit MQTT-Adapter)  
 *MQTT User/Passwort: User und Passort des MQTT Server Zugang.  
 *MQTT ROOT: Root Hierarchieknoten im MQTT Server wo die Nachrichten abgelegt werden.  
   
