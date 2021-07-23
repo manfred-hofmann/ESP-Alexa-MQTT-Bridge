@@ -21,7 +21,7 @@ PubSubClient:
 Open your Arduino IDE and go to Sketch > Include Library > Manage Libraries. The Library Manager should open.  
 Search for "PubSubClient" on the Search box and install the MQTT library by Nick O'Leary. --> PubSubClient.h (Version 2.8.0)  
    
-Nach dem Start des ESP wird ein offener WiFi AP erstellt.  
+Nach dem Start des ESP wird ein offener WiFi AP erstellt. Dauert bis zu 3 Minuten!    
 Suche mit dem Handy das WLAN ESP_ALEXA_GW und melde Dich im WLAN an.  
 Dann öffnet sich der Browser in dem die WLAN Parameter des lokalen Netzwerkes und die MQTT Parameter angegeben werden können.  
 folgende Einstellungen sind hier zu setzen:  
