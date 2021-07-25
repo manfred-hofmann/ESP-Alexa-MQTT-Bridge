@@ -47,7 +47,6 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #include "Configuration.h"
-//#define ESPDEBUG_ALEXA
 #include <Espalexa.h>
 #include <PubSubClient.h>
 
@@ -55,14 +54,11 @@
 #include "icons.h"
 
 
-#define VERSION 20210714
+#define VERSION 20210725
 
-
-#define WIFI_SETUP_TIMEOUT 120
 
 //callback functions
 void handle_alexa(EspalexaDevice* dev);
-//void Alexa_update(int bis_auf = 100);
 
 //create devices yourself
 EspalexaDevice* alexa[ESPALEXA_MAXDEVICES];
@@ -90,11 +86,12 @@ PubSubClient mqttclient(espClient);
 //Variablen
 unsigned long aktmillis = 0;
 unsigned long mqttrcmillis = 0;
-bool wifimode = false;
+bool wifimode = false;  // AP-Mode = false STA-Mode = true
 bool mqtt_ready = false;
 bool mqtt_ready_out = false;
 int alexa_idx = 0;
 int sekunden_loop = 0;
+int ap_sekunden_loop = 0;
 int mqttloop = 0;
 uint8_t alexa_idxpoint[ESPALEXA_MAXDEVICES+1] = {};
 
@@ -145,7 +142,7 @@ delay(100);
     versuche++;
   }
   Serial.println(".");
-   WiFi.setAutoReconnect(true);
+  WiFi.setAutoReconnect(true);
 
   if (!WiFi.isConnected())
   {
@@ -307,17 +304,32 @@ void loop() {
 #ifdef PIN_LED
     digitalWrite(PIN_LED, !digitalRead(PIN_LED));
 #endif
+    if ( !wifimode )
+    {
+      ap_sekunden_loop++;
+      if ( ap_sekunden_loop > AP_WIFI_TIMEOUT )
+      {
+#ifdef DEBUG_WLAN
+        Serial.println("AP WLAN TimeOut. Reboot!");
+#endif
+        delay(1000);
+        ESP.restart();
+      }
+    }
     aktmillis = millis();
   }
 
-  if (mqttloop > 10 && mqttclient.connected() ) 
+  if ( wifimode )
   {
-    mqtt_ready = true;
-  }
-  if ( mqtt_ready && !mqtt_ready_out )
-  {
-    mqtt_ready_out = true;
-  Serial.println("MQTT Ready");  
+    if (mqttloop > 10 && mqttclient.connected() ) 
+    {
+      mqtt_ready = true;
+    }
+    if ( mqtt_ready && !mqtt_ready_out )
+    {
+      mqtt_ready_out = true;
+      Serial.println("MQTT Ready");  
+    }
   }
 }
 
@@ -411,14 +423,17 @@ void handleWiFiSettings()
     String cssid;
     String ownssid;
     String STA_pass = WiFi.psk();
-
+#ifdef DEBUG_WLAN
+   if ( !wifimode ) Serial.println ( "Enter AP WifiSettings:" + webServer.hostHeader());
+#endif
+    ap_sekunden_loop = 0;       // Verbindung hergestellt reset der AP-Zeit
     ownssid = WiFi.SSID();
     if ( ownssid == "" ) ownssid = "SID";
     int n = WiFi.scanNetworks();
     int indices[n];
     
     if (n == 0) {
-#ifdef DEBUG
+#ifdef DEBUG_WLAN
           Serial.println("no networks found");
 #endif
     } else {
@@ -612,7 +627,6 @@ void handleGWupdate()
   }
   delay(2000);
   ESP.restart();
-
 }
 
 //################################################################################################################################################

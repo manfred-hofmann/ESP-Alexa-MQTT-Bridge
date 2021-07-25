@@ -21,9 +21,14 @@ PubSubClient:
 Open your Arduino IDE and go to Sketch > Include Library > Manage Libraries. The Library Manager should open.  
 Search for "PubSubClient" on the Search box and install the MQTT library by Nick O'Leary. --> PubSubClient.h (Version 2.8.0)  
    
+<<<<<<< HEAD
 Nach dem Start des ESP wird ein offener WLAN AccessPoint erstellt.  Dauert ca. 1 Minute!  
 -> Suche mit dem Handy das WLAN ESP_ALEXA_GW und melde Dich im WLAN an.  
 
+=======
+Nach dem Start des ESP wird ein offener WiFi AP erstellt. Dauert bis zu 3 Minuten!    
+Suche mit dem Handy das WLAN ESP_ALEXA_GW und melde Dich im WLAN an.  
+>>>>>>> abd5ad78d5df8e13a6e97c972b5a41ae6f7d1405
 Dann öffnet sich der Browser in dem die WLAN Parameter des lokalen Netzwerkes und die MQTT Parameter angegeben werden können.  
 folgende Einstellungen sind hier zu setzen:  
   
@@ -41,7 +46,7 @@ Wird in dieser Zeit keine Verbindung mit dem WLAN AccessPoint hergestellt, start
 Nachdem Speichern wird der ESP neu gestartet!  
 Nun sollte sich der ESP mit dem lokalen Netzwerk verbinden und  
 im MQTT-Server werden die Knoten IP und SYSTEMNAME unter dem Root Hierarchieknoten angelegt.
-Außerdem wird der erste Eintrag in der Befehlsliste angelegt z.B. TEST:
+
 ![MQTT-Server](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/mqtt01.JPG "MQTT-Server")    
   
 Als nächstes muss die Alexa nach neuen Geräten suchen.  
@@ -49,8 +54,9 @@ Als nächstes muss die Alexa nach neuen Geräten suchen.
    
 In der APP sollte ein neues Gerät gefunden werden (z.B. Test)  
 <img src="https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/alexa01.jpg" width="200" height="420" />   
-Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird das an den MQTT-Server weitergegeben.  
-  
+Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird das an den MQTT-Server weitergegeben  
+und der erste Eintrag in der Befehlsliste angelegt z.B. TEST mit dem entsprechenden Alexa value.  
+
 Auf der Hauptseite des ESP können nun weitere Geräte eingerichtet werden:  
 ![Web01](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web01.JPG "Web01")  
 ![Web02](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web02.JPG "Web02")  
