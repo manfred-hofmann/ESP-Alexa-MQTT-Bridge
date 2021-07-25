@@ -21,8 +21,9 @@ PubSubClient:
 Open your Arduino IDE and go to Sketch > Include Library > Manage Libraries. The Library Manager should open.  
 Search for "PubSubClient" on the Search box and install the MQTT library by Nick O'Leary. --> PubSubClient.h (Version 2.8.0)  
    
-Nach dem Start des ESP wird ein offener WiFi AP erstellt.  
-Suche mit dem Handy das WLAN ESP_ALEXA_GW und melde Dich im WLAN an.  
+Nach dem Start des ESP wird ein offener WLAN AccessPoint erstellt.  Dauert ca. 1 Minute!  
+-> Suche mit dem Handy das WLAN ESP_ALEXA_GW und melde Dich im WLAN an.  
+
 Dann öffnet sich der Browser in dem die WLAN Parameter des lokalen Netzwerkes und die MQTT Parameter angegeben werden können.  
 folgende Einstellungen sind hier zu setzen:  
   
@@ -31,7 +32,9 @@ folgende Einstellungen sind hier zu setzen:
 *MQTT Server: Name oder IP-Adresse des MQTT Servers (z.B. ioBroker mit MQTT-Adapter)  
 *MQTT User/Passwort: User und Passort des MQTT Server Zugang.  
 *MQTT ROOT: Root Hierarchieknoten im MQTT Server wo die Nachrichten abgelegt werden.  
-  
+
+Hinweis: Der WLAN AccessPoint bleibt für ca. 5 Minuten geöffnet.  
+Wird in dieser Zeit keine Verbindung mit dem WLAN AccessPoint hergestellt, startet der ESP neu und versucht erneut sich mit dem bestehenden WLAN zu verbinden.   
 ![WLan/MQTT-Einstellungen](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web03.JPG "WLan/MQTT-Einstellungen")  
   
   
