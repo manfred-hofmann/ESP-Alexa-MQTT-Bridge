@@ -11,7 +11,7 @@ Die Sprachbefehle werden mittels MQTT an einen MQTT-Server
 Den Code so wie er ist per Arduino-IDE auf einen ESP8266 übertragen.  
 Wie das geht kann man im in zahlreichen Beiträgen im Internet erfahren.  
    
-Folgende Libraries werden zusätzlich benötigt:
+Folgende Libraries werden zusätzlich benötigt:  
   
 Espalexa:  
 Open your Arduino IDE and go to Sketch > Include Library > Manage Libraries. The Library Manager should open.  
