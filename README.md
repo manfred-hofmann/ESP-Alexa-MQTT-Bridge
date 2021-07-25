@@ -51,7 +51,7 @@ In der APP sollte ein neues Gerät gefunden werden (z.B. Test)
 <img src="https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/alexa01.jpg" width="200" height="420" />   
   
 Wenn das Gerät (Test) nun durch einen Sprachbefehl geändert wird, wird dies an den MQTT-Server weitergegeben und ein neuer Eintrag unter
-dem <Root Hierarchieknoten>/ALEXA für dieses Gerät wird mit dem entsprechenden Value angelegt.  
+dem Root Hierarchieknoten/ALEXA für dieses Gerät wird mit dem entsprechenden Value angelegt.  
   
 Auf der Hauptseite des ESP können nun weitere Geräte eingerichtet werden:  
 ![Web01](https://github.com/manfred-hofmann/ESP-Alexa-MQTT-Bridge/blob/main/pic/web01.JPG "Web01")  
