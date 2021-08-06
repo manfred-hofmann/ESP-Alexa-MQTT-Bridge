@@ -92,6 +92,7 @@ bool mqtt_ready_out = false;
 int alexa_idx = 0;
 int sekunden_loop = 0;
 int ap_sekunden_loop = 0;
+int sta_sekunden_loop = 0;
 int mqttloop = 0;
 uint8_t alexa_idxpoint[ESPALEXA_MAXDEVICES+1] = {};
 
@@ -296,7 +297,7 @@ void loop() {
     mqttclient.loop();
   }
   
-
+// Jede Sekunde:
   if ( millis() > aktmillis + 1000 ) 
   {
     sekunden_loop++;
@@ -304,7 +305,7 @@ void loop() {
 #ifdef PIN_LED
     digitalWrite(PIN_LED, !digitalRead(PIN_LED));
 #endif
-    if ( !wifimode )
+    if ( !wifimode )      //AP-Mode
     {
       ap_sekunden_loop++;
       if ( ap_sekunden_loop > AP_WIFI_TIMEOUT )
@@ -316,8 +317,28 @@ void loop() {
         ESP.restart();
       }
     }
+    else //STA-Mode
+    {
+      if (!WiFi.isConnected()) 
+      {
+        sta_sekunden_loop++;
+        if ( sta_sekunden_loop > WIFI_SETUP_TIMEOUT )
+        {
+#ifdef DEBUG_WLAN
+          Serial.println("STA WLAN Lost. Reboot!");
+#endif
+          delay(1000);
+          ESP.restart();
+        }
+      }
+      else
+      {
+        sta_sekunden_loop = 0;
+      }
+    }
     aktmillis = millis();
   }
+  
 
   if ( wifimode )
   {
