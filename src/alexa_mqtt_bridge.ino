@@ -46,6 +46,8 @@
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <TimeLib.h>
+
 #include "Configuration.h"
 #include <Espalexa.h>
 #include <PubSubClient.h>
@@ -54,7 +56,7 @@
 #include "icons.h"
 
 
-#define VERSION 20210725
+#define VERSION 20210809
 
 
 //callback functions
@@ -84,13 +86,13 @@ WiFiClient espClient;
 PubSubClient mqttclient(espClient);
 
 //Variablen
+time_t upTime = 0;
 unsigned long aktmillis = 0;
 unsigned long mqttrcmillis = 0;
 bool wifimode = false;  // AP-Mode = false STA-Mode = true
 bool mqtt_ready = false;
 bool mqtt_ready_out = false;
 int alexa_idx = 0;
-int sekunden_loop = 0;
 int ap_sekunden_loop = 0;
 int sta_sekunden_loop = 0;
 int mqttloop = 0;
@@ -300,7 +302,34 @@ void loop() {
 // Jede Sekunde:
   if ( millis() > aktmillis + 1000 ) 
   {
-    sekunden_loop++;
+    if ( mqttloop > 43200 ) 
+    {
+      mqttloop = 0;
+      mqttclient.disconnect();
+      delay(1000);
+#ifdef DEBUG
+      Serial.println("12h Timeout: MQTT-Reconnect");
+#endif
+      mqttreconnect();
+      
+      delay(1000);
+      if (!mqttclient.connected() ) 
+      {
+#ifdef DEBUG
+      Serial.println("Fehler MQTT-Reconnect. Reboot...");
+#endif
+        delay (4000);
+        ESP.restart();
+      }
+      else
+      {
+#ifdef DEBUG
+      Serial.println("MQTT-Reconnect- OK!");
+#endif       
+      }
+    }
+    
+    upTime = millis()/1000;
     mqttloop++;
 #ifdef PIN_LED
     digitalWrite(PIN_LED, !digitalRead(PIN_LED));
@@ -313,7 +342,7 @@ void loop() {
 #ifdef DEBUG_WLAN
         Serial.println("AP WLAN TimeOut. Reboot!");
 #endif
-        delay(1000);
+        delay(5000);
         ESP.restart();
       }
     }
@@ -327,7 +356,7 @@ void loop() {
 #ifdef DEBUG_WLAN
           Serial.println("STA WLAN Lost. Reboot!");
 #endif
-          delay(1000);
+          delay(5000);
           ESP.restart();
         }
       }
@@ -420,7 +449,9 @@ void handleRoot()
       message += String(mysetting.alexa[z].text);
       message += F("\" name=\"alexatext_");
       message += String(z);
-      message += F("\" minlength=\"3\" maxlength=\"30\" size=\"30\">");
+      message += F("\" minlength=\"3\" maxlength=\"30\" size=\"30\">\n");
+      message += F("Value: ");
+      message += String(mysetting.alexa[z].value);
       message += F("</td></tr>\n");
     }
     
@@ -554,6 +585,7 @@ void handleWiFiSettings()
       "</table>"
       "<br>"
       "<button name=\"action\" value=\"1\"><span style=\"color:White;font-size:14px;\">&#128077; speichern</span></button>");
+     message += "<br><br>\nUptime: " + String(int(upTime / 86400)) + " Tage, " + String(hour(upTime)) + " Stunden, " + String(minute(upTime)) + " Minuten, " + String(second(upTime)) + " Sekunden";
      message += "<br><br>Version: " + String(VERSION);
 
      message += F("</form>"
@@ -672,7 +704,7 @@ void handleWiFiupdate()
 #ifdef DEBUG
     Serial.println ("Sytemname von " + String(mysetting.systemname) + " nach " + webServer.arg("systemname") + " geändert!");
 #endif
-    new_mqttuser.toCharArray(mysetting.systemname,new_systemname.length()+1);
+    new_systemname.toCharArray(mysetting.systemname,new_systemname.length()+1);
     save = true;
   }
   
